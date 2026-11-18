@@ -1,15 +1,12 @@
 //! The fastest semantic text chunking library — up to 1TB/s chunking throughput.
 //!
-//! This crate provides three main functionalities:
+//! This crate provides two main functionalities:
 //!
 //! 1. **Size-based chunking** ([`chunk`] module): Split text into chunks of a target size,
 //!    preferring to break at delimiter boundaries.
 //!
 //! 2. **Delimiter splitting** ([`split`] module): Split text at every delimiter occurrence,
-//!    equivalent to Cython's `split_text` function.
-//!
-//! 3. **Token-aware merging** ([`merge`] module): Merge segments based on token counts,
-//!    equivalent to Cython's `_merge_splits` function.
+//!    keeping every byte.
 //!
 //! # Examples
 //!
@@ -46,24 +43,9 @@
 //! let offsets = split_at_delimiters(text, b".", IncludeDelim::Prev, 0);
 //! assert_eq!(&text[offsets[0].0..offsets[0].1], b"Hello.");
 //! ```
-//!
-//! ## Token-aware merging
-//!
-//! ```
-//! use chunk::merge_splits;
-//!
-//! // Merge text segments based on token counts
-//! let splits = vec!["a", "b", "c", "d", "e", "f", "g"];
-//! let token_counts = vec![1, 1, 1, 1, 1, 1, 1];
-//! let result = merge_splits(&splits, &token_counts, 3);
-//! assert_eq!(result.merged, vec!["abc", "def", "g"]);
-//! assert_eq!(result.token_counts, vec![3, 3, 1]);
-//! ```
 
 mod chunk;
 mod delim;
-mod merge;
-mod savgol;
 mod split;
 
 // Re-export from chunk module
@@ -74,17 +56,8 @@ pub use crate::split::{
     IncludeDelim, PatternSplitter, Splitter, split, split_at_delimiters, split_at_patterns,
 };
 
-// Re-export from merge module
-pub use crate::merge::{MergeResult, find_merge_indices, merge_splits};
-
 // Re-export constants and types from delim module
 pub use crate::delim::{DEFAULT_DELIMITERS, DEFAULT_TARGET_SIZE, MultiPatternSearcher};
-
-// Re-export from savgol module
-pub use crate::savgol::{
-    FilteredIndices, MinimaResult, filter_split_indices, find_local_minima_interpolated,
-    savgol_filter, windowed_cross_similarity,
-};
 
 // Additional tests that span modules
 #[cfg(test)]

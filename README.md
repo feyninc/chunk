@@ -10,8 +10,6 @@
 
 <p align="center">
   <a href="https://crates.io/crates/chunk"><img src="https://img.shields.io/crates/v/chunk.svg?color=e74c3c" alt="crates.io"></a>
-  <a href="https://pypi.org/project/chonkie-core"><img src="https://img.shields.io/pypi/v/chonkie-core.svg?color=e67e22" alt="PyPI"></a>
-  <a href="https://www.npmjs.com/package/@chonkiejs/chunk"><img src="https://img.shields.io/npm/v/@chonkiejs/chunk.svg?color=2ecc71" alt="npm"></a>
   <a href="https://docs.rs/chunk"><img src="https://img.shields.io/docsrs/chunk?color=3498db" alt="docs.rs"></a>
   <a href="LICENSE-MIT"><img src="https://img.shields.io/badge/license-MIT%2FApache--2.0-9b59b6.svg" alt="License"></a>
 </p>
@@ -25,7 +23,7 @@ you know how every chunking library claims to be fast? yeah, we actually meant i
 want to know how? [read the blog post](https://minha.sh/posts/so,-you-want-to-chunk-really-fast) where we nerd out about SIMD instructions and lookup tables.
 
 > [!NOTE]
-> **chunk** was previously known as **memchunk**. It still contains the `chunk` method but now also includes other basic operations that power [chonkie](https://github.com/chonkie-inc/chonkie) core.
+> **chunk** was previously known as **memchunk**. It still contains the `chunk` method, plus delimiter and pattern splitting.
 
 <p align="center">
   <img src="assets/benchmark.png" alt="Benchmark comparison" width="700">
@@ -40,8 +38,6 @@ want to know how? [read the blog post](https://minha.sh/posts/so,-you-want-to-ch
 ```bash
 cargo add chunk
 ```
-
-looking for [python](https://github.com/chonkie-inc/chunk/tree/main/packages/python) or [javascript](https://github.com/chonkie-inc/chunk/tree/main/packages/wasm)?
 
 ## 🚀 Usage
 
